@@ -1,0 +1,29 @@
+services:
+  api:
+    build: ./backend
+    container_name: vncd_api
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    volumes:
+      - api_data:/app/data
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  web:
+    build: ./frontend
+    container_name: vncd_web
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  api_data:

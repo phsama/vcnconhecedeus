@@ -1,0 +1,273 @@
+/* =====================================================
+   VOCÊ NÃO CONHECE DEUS — Design System
+   Minimalista, editorial, preto/branco.
+   Tipografia: EB Garamond (serifa) + Inter (sans)
+   ===================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --gray-100: #f0f0f0;
+  --gray-200: #d8d8d8;
+  --gray-400: #8a8a8a;
+  --gray-700: #3a3a3a;
+
+  --font-serif: 'EB Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size-base: 1rem;
+  --size-lg: 1.125rem;
+  --size-xl: 1.5rem;
+  --size-2xl: 2rem;
+  --size-3xl: 2.75rem;
+  --size-4xl: 3.75rem;
+  --size-5xl: 5rem;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+  --space-24: 12rem;
+
+  --max-w: 680px;
+  --max-w-wide: 960px;
+
+  --transition: 200ms ease;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Typography ──────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(var(--size-3xl), 6vw, var(--size-5xl)); }
+h2 { font-size: clamp(var(--size-2xl), 4vw, var(--size-3xl)); }
+h3 { font-size: clamp(var(--size-xl), 3vw, var(--size-2xl)); }
+
+p {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--gray-700);
+  max-width: 60ch;
+}
+
+strong { font-weight: 500; color: var(--black); }
+
+a {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition);
+}
+
+a:hover { opacity: 0.55; }
+
+a:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ── Layout Utilities ───────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.container--wide {
+  max-width: var(--max-w-wide);
+}
+
+.section {
+  padding-block: var(--space-16);
+}
+
+.section--sm {
+  padding-block: var(--space-8);
+}
+
+/* ── Dividers ───────────────────────────────────────── */
+
+.hr {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin-block: var(--space-8);
+}
+
+/* ── Form Elements ──────────────────────────────────── */
+
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  padding: var(--space-2) 0;
+  border: none;
+  border-bottom: 1.5px solid var(--black);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  color: var(--black);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder {
+  color: var(--gray-400);
+  font-weight: 300;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus {
+  border-bottom-color: var(--black);
+}
+
+input[type="email"]:focus-visible,
+input[type="text"]:focus-visible {
+  outline: none;
+  border-bottom: 2px solid var(--black);
+}
+
+/* ── Buttons ────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  border: 1.5px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: var(--size-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), opacity var(--transition);
+  white-space: nowrap;
+  border-radius: 0;
+}
+
+.btn:hover:not(:disabled) {
+  background: transparent;
+  color: var(--black);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--black);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ── Feedback Messages ──────────────────────────────── */
+
+.msg {
+  font-size: var(--size-sm);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  padding-block: var(--space-1);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msg--success { color: var(--black); }
+.msg--error   { color: #b00020; }
+
+/* ── Honeypot ───────────────────────────────────────── */
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  tab-index: -1;
+}
+
+/* ── Scroll reveal ──────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Page transitions ───────────────────────────────── */
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 250ms ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+/* ── Mobile First Responsiveness ────────────────────── */
+
+@media (max-width: 640px) {
+  :root {
+    --space-16: 5rem;
+    --space-12: 4rem;
+    --space-8:  3rem;
+  }
+}
